@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package utilservice;
+
+// Utility Service for common operations
+service UtilityService {
+  rpc HealthCheck(google.protobuf.Empty) returns (HealthCheckResponse);
+  rpc ConvertFormat(ConvertRequest) returns (ConvertResponse);
+}
+
+// Health Check Response message
+message HealthCheckResponse {
+  string status = 1;   // Status of the health check
+  string message = 2;  // Additional message or error description
+}
+
+// Convert Format Request and Response messages
+message ConvertRequest {
+  string input_format = 1;
+  string output_format = 2;
+  bytes data = 3;
+}
+
+message ConvertResponse {
+  bytes converted_data = 1;
+}
